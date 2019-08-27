@@ -8,7 +8,7 @@ module.exports = {
     lineNumbers: true
   },
   themeConfig: {
-    repo: "JayZHZ/blog",
+    repo: "JayZHZ/JayBlog",
     lastUpdated: 'Last Updated',
     nav: [
       {
