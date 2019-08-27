@@ -2,7 +2,7 @@ module.exports = {
   title: 'JayZHZ的博客',
   description: '欢迎来访',
   head: [
-    ['link', { rel: 'icon', href: '/log.png' }],
+    ['link', { rel: 'icon', href: '/logo.png' }],
   ],
   markdown: {
     lineNumbers: true
