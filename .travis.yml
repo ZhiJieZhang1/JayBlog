@@ -1,21 +1,22 @@
 sudo: required
 language: node_js
 node_js:
-  - '10'
-env:
-  global:
-    secure: yH8i2jeFAuQ1PDp+5xyThKT6T3jqdLfwDmH0APMH+iSioJt0rSrYMlbRd85VcsL6asE81tSEesU08uPWjZ89fC7pr6Vf87Yiu9M7lf/YwDL9APxt5BJRJrWhbZ15qPJkNqHonXIK/pTRZUZW7rDrE9s6vLdOjzdX3uk+DdwFZkXUEtWb93bjHG/qZN9f1njoIXHnDTU6HSOJW8U42JIbJ3kkVPucK+Ep0Q3GJU4j6dIhZeqzBKBsJkGxUHzwZ1yfmGKraqiCFFfLDqtg84D/7jndYcZiWRWhDQSVSHQYvpB+skZxT2+rJxSSDbGaHvdBh9Yfx5bwXMeuxlF/LCsRhj+hF16IpRLKzB+vXABCeWggQCrFXb6y9jOxg7JuIv9JCUQ6XstSRaNMzBdV8pvbMzReZGwKm4xErxxns/ki0EWYSNpuDTWVMNv2P3LjVeI2PYdE5kBddgyk0Gr39Gf9SmRpF4MZj8sK7SepKqLCWlOLEz1iG3bhgKHidyw7tc3yW8dUMD849EHeZckruk4IVuV5VMLcibx5tAZXEFMkrxTzp+B+dCArCKBkplVF8LxPSmfkLxok2fL2cLeymJlrn8SmUkbBm5ukB4quX0IaY1OGHcaWqVLTSVX4zJjdWKj7h2noGz5Xzlfy0HvAr32WKcV4dtPMFk2kIrIG/TZFbME=
+- '10'
+
 before_install:
-  - npm install
+- npm install
+
 script:
-  - npm run build
+- npm run build
+
 deploy:
   provider: pages
   target-branch: master
   skip-cleanup: true
   local-dir: docs/.vuepress/dist
   repo: JayZHZ/JayZHZ.github.io
-  github-token: $REPO_TOKEN
+  github-token:
+    secure: vogAON1yMmimqPx6v3Z2LEXCopnL4h17d0m1Jjx1EIJ5rON+f75j8aRBxhcnerhurWffuCi9QDHsIDllTQ7p7tHgkkRQ4c7XO5SyF2FvmNwcUMsxMbhbRY7+1Vyvgk7eOVa4OxiVj/ZcAvs3/yxtUUQuNRFnaT7qiJqHxqOILmrIHmzETMryfPkH3WsXLckJzQxFBrjQ495sp6hSA93SHvLw0AFxjHxZqnOuyv2RQiyElxYH3AI1UmndBRvQEXpFd/FO5/rPO3w9fAu3Nbi6t+tNVjcjiQNpykzI9gRtcjcWFtF9BINZWL1n6n5Aubrv8wVMTh521kyZeF91CzMKm0v1kV1/UxiWg58/fb1mBypjjTpvSvxM7ykw8skGjbUjwOtHKb+QabPexVGo8KyHE5Oxr6o+uwUQtSyxVnxcE/Rco+airVnCj+sKHvtkCdwu0rggCLtEOJjkl+x/4GTKzKCfb4SweKZDO+4wGefOsvVmdDOEAnsqWfpcBYc870RiU7blvv21yF7R7ftOfmBkwSZaykp9ZTDQl+BAdNxPexx/dTMfdL2sVh0VMnAgujm/TZiU3h90efCWEiAKIXlAabPRcNIzZon47IFzuGQu6JQtMjbmjdQiFp3YNkL9GHL4kJIqP0FQWbPqWfc2WscI/zcVu/CvIZGRca+V0MXgaFQ=
   keep-history: true
   on:
     branch: master
