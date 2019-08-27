@@ -1,0 +1,24 @@
+{
+  "name": "zzj-blog",
+  "version": "1.0.0",
+  "description": "blog of full stack developer",
+  "main": "index.js",
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://github.com:JayZHZ/blog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/singmeToSE/blog/issues"
+  },
+  "homepage": "https://github.com/singmeToSE/blog#readme",
+  "devDependencies": {
+    "vuepress": "^1.0.3"
+  }
+}
