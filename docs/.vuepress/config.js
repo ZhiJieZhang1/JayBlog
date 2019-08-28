@@ -9,7 +9,6 @@ module.exports = {
   },
   themeConfig: {
     repo: "JayZHZ/JayBlog",
-    lastUpdated: 'Last Updated',
     nav: [
       {
         text: "博客",
@@ -27,7 +26,19 @@ module.exports = {
           ]
         }
       ]
-    }
+    },
+    lastUpdated: "Last Updated",
+    docsDir: "docs",
+    editLinks: true,
+    editLinkText: "在 GitHub 上编辑此页"
   },
-  evergreen: true
+  plugins: {
+    '@vuepress/medium-zoom': {
+      selector: 'img',
+      options: {
+          margin: 16
+      }
+    },
+    '@vuepress/back-to-top':true
+  }
 }

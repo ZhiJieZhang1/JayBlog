@@ -1,24 +1,28 @@
 {
   "name": "zzj-blog",
   "version": "1.0.0",
-  "description": "blog of full stack developer",
+  "description": "my blog",
   "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
   "scripts": {
-    "docs:dev": "vuepress dev docs",
-    "build": "vuepress build docs",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://github.com:JayZHZ/blog.git"
+    "url": "git+https://github.com/JayZHZ/JayBlog.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/singmeToSE/blog/issues"
+    "url": "https://github.com/JayZHZ/JayBlog/issues"
   },
-  "homepage": "https://github.com/singmeToSE/blog#readme",
+  "homepage": "https://github.com/JayZHZ/JayBlog#readme",
   "devDependencies": {
+    "@vuepress/plugin-back-to-top": "^1.0.3",
+    "@vuepress/plugin-medium-zoom": "^1.0.3",
     "vuepress": "^1.0.3"
   }
 }
