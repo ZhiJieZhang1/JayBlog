@@ -12,7 +12,7 @@ deploy:
   skip-cleanup: true
   local-dir: docs/.vuepress/dist
   repo: JayZHZ/JayZHZ.github.io
-  github-token: $GITHUB_TOKEN
+  github-token: "$GITHUB_TOKEN"
   keep-history: true
   on:
     branch: master
