@@ -13,6 +13,7 @@ deploy:
   provider: pages
   skip-cleanup: true
   keep-history: true
+  target-branch: master
   github-token: $GITHUB_TOKEN
   local-dir: docs/.vuepress/dist
   repo: JanssenZhang/JanssenZhang.github.io
