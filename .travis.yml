@@ -11,7 +11,7 @@ env:
   - secure: TbMo+2Q9vr0Z7CN+ggayvNE7fE4qMf2E0C3kK++qaVZxdiTtpu9dvx5OLxynstI5jg8LVHYnznw+UX7LIZycWI7XzLaQbIS9oD1mLBG1+BALe+ypywMyzaGvi4LknawXDU7fznatcHAxb+4hZCNxKCNo4oGGrwcDq8dQwPHe8Wt3XHUr6hAczPx2VOUXk0aLaNJJvnlhMwK4NyOo+TtzvoBnRYy7B88PqVePzHzZfMqQeXi1I5JkUFqq1kaQVRcUtD0qaE74XKA/yf2uDLwoDrfOFGNEWZqAR5sOUs8wCuA7TAembo4NqemYiGXDv5sPgPfsiNra7/CpuOAdsTer116m1QE7ND8mVb8X1BtK4yGfRcoYGVTMmW9H08A3tm5P/wefZZYlW9j+GQfTjHNlGovrv1BM0daJ/4G8v+9p3z8IcOV0jryRQ10pmZQD+7HD1Ew+sWLcFPu0FjXXZOm3VVfvsg9AlU++pfsPMlA6fGtTtn2RA8I5QdMCYZ2FMNJ1itWk6N6YezJYkN4mbYwYtefvyHFyM3EZkMRQDeMIG/8k44Ix7WQ14LjQA2Vg9hAQYHvNrvsgeWW27HpZk/v9wbNTowL/7K51nhtpzuILZicrEjcNjfgPuC22FySdXYuw025Whug+oo7IzU3eD5TF0uIrpGoRmgtNrhVJpSqCHRY=
 deploy:
   provider: pages
-  target-branch: master
+  target-branch: gh-pages
   skip-cleanup: true
   local-dir: docs/.vuepress/dist
   repo: JayZHZ/JayZHZ.github.io
