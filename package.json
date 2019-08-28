@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JayZHZ/JayBlog.git"
+    "url": "git+https://github.com/JanssenZhang/JayBlog.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/JayZHZ/JayBlog/issues"
+    "url": "https://github.com/JanssenZhang/JayBlog/issues"
   },
-  "homepage": "https://github.com/JayZHZ/JayBlog#readme",
+  "homepage": "https://github.com/JanssenZhang/JayBlog#readme",
   "devDependencies": {
     "@vuepress/plugin-back-to-top": "^1.0.3",
     "@vuepress/plugin-medium-zoom": "^1.0.3",
