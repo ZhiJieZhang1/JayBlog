@@ -5,7 +5,7 @@ node_js:
 before_install:
 - yarn
 script:
-- yarn doc:build
+- yarn build
 deploy:
   provider: pages
   target-branch: master
