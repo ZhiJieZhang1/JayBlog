@@ -3,9 +3,9 @@ language: node_js
 node_js:
 - '10'
 before_install:
-- npm install
+- yarn
 script:
-- npm run build
+- yarn doc:build
 deploy:
   provider: pages
   target-branch: master
@@ -16,6 +16,3 @@ deploy:
   keep-history: true
   on:
     branch: master
-env:
-  global:
-    secure: GJhqnP6BnKjF0BFx6jojuX+zmkVO0/6N7eShzuXCs8HZc3OxQZnujTz/L4Z/fFLGvwyYKb9MER0U5qL+/vkwA6K/irrm15nzb/xCD+ngJEMNrM3oZnkRO+iGdHU7Ca/FBnbQTfJeJcqyxtqSF8uLrxZn0B41N4bA8J5u44qFoIfo/2lu+O5fTloBlNXUfPbHV753LM3BPI5e7MUk2HNmJZfeAQMTKhmFXg2a0lrR2dHjITNoIlAFjm8nk4ZDIgymq7anaHvmP4MKoLmEo6S0P7jwlgRl3PDhDMPpXoX+kAsNkdZlJbxAPagbjz7bdVuefRx9jmZeGyJ5dTEN/KIht639uTVHe3uSNrBypgIIcGvPCa1VxDC+I+PCQ1LEm2LaJUNQvPkJz2GLL6xkErFDbup6oqw4eCh7XACMNaCwGPiQ5H4+C9bk0YluZEjm+A2e5nfdFpCjZm9+N+1lP/MBJLKCqJmmIwU7OXtPDBtl6B61ok5OjzJG5dag4pYdUm0QIs4SeblVF8+89fehTYGt4zYS4xtTqr3/yIFyj6JiMplSKEXOFiQ7rVMTUwWS3SImpHD2KPkpziV9xNTGzpFlf/Q3Lg9heNR4mfmlx7ndlT9VkGfLqBEKxuEnq5Ag9oNfguaUxAfVpx4wy1Ij8KhJws6GVyW1+1DEcfiJhOQHLXM=
