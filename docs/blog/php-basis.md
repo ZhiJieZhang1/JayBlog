@@ -297,4 +297,214 @@ mixed json_decode ($json_string [,$assoc = false [, $depth = 512 [, $options = 0
 ?>
 ```
 
-### json_last_error
+## EOF(heredoc)
+
+定义字符串的方法
+
+### 使用方法
+
+1. 必须后接分号，否则编译通不过。
+
+2. **EOF** 可以用任意其它字符代替(比如abc)，只需保证结束标识与开始标识一致。
+
+3. **结束标识必须顶格独自占一行(即必须从行首开始，前后不能衔接任何空白和字符)。**
+
+4. 开始标识可以不带引号或带单双引号，不带引号与带双引号效果一致，解释内嵌的变量和转义符号，带单引号则不解释内嵌的变量和转义符号。
+
+5. 当内容需要内嵌引号（单引号或双引号）时，不需要加转义符，本身对单双引号转义，此处相当与q和qq的用法。
+
+```php
+<?php
+  echo <<<EOF
+    <h1>我的第一个标题</h1>
+    <p>我的第一个段落。</p>
+  EOF;
+  // 结束需要独立一行且前后不能空格
+?>
+```
+
+::: warning 注意
+1.以 <<<EOF 开始标记开始，以 EOF 结束标记结束，结束标记必须顶头写，不能有缩进和空格，且在结束标记末尾要有分号 。  
+2.位于开始标记和结束标记之间的变量可以被正常解析，但是函数则不可以。在 heredoc 中，变量不需要用连接符 . 或 , 来拼接
+:::
+
+```php
+<?php
+  $name="is name";
+  $a= <<<EOF
+      "abc"$name
+      "123"
+  EOF;
+  // 结束需要独立一行且前后不能空格
+  echo $a;
+?>
+```
+
+## 数据类型
+
+String（字符串）, Integer（整型）, Float（浮点型）, Boolean（布尔型）, Array（数组）, Object（对象）, NULL（空值）。 
+***
+
+### 字符串
+
+单引号，双引号中都行
+
+```php
+<?php
+  $x = "Hello World";
+  $y = 'Hello World';
+?>
+```
+
+### 整型
+
+整数是一个没有小数的数字。
+
+整数规则:
+
+- 整数必须至少有一个数字 (0-9)
+
+- 整数不能包含逗号或空格
+
+- 整数是没有小数点的
+
+- 整数可以是正数或负数
+
+- 整型可以用三种格式来指定：十进制， 十六进制（ 以 0x 为前缀）或八进制（前缀为 0）。
+
+```php
+<?php
+  $x = 5985;
+  var_dump($x); // int(5985) 
+  echo "<br>"; 
+  $x = -345; // 负数 
+  var_dump($x); // int(-345)
+  echo "<br>"; 
+  $x = 0x8C; // 十六进制数
+  var_dump($x); // int(140)
+  echo "<br>";
+  $x = 047; // 八进制数
+  var_dump($x); // int(39)
+?>
+```
+
+### 浮点型
+
+浮点数是带小数部分的数字，或是指数形式。
+
+```php
+<?php
+  $x = 10.365;
+  var_dump($x); // float(10.365) 
+  echo "<br>"; 
+  $x = 2.4e3;
+  var_dump($x); // float(2.4e3) 
+  echo "<br>"; 
+  $x = 8E-5;
+  var_dump($x); // float(8E-5) 
+?>
+```
+
+### 布尔型
+
+```php
+<?php
+  $x=true;
+  $y=false;
+?>
+```
+
+### 数组
+
+```php
+<?php
+  $cars = array("Volvo","BMW","Toyota");
+  var_dump($cars); // array(3) { [0]=> string(5) "Volvo" [1]=> string(3) "BMW" [2]=> string(6) "Toyota" }
+?>
+```
+
+### 对象
+
+对象数据类型也可以用于存储数据。
+
+在 PHP 中，对象必须声明。
+
+首先，你必须使用class关键字声明类对象。类是可以包含属性和方法的结构。
+
+然后我们在类中定义数据类型，然后在实例化的类中使用数据类型：
+
+```php
+<?php
+class Car
+{
+  var $color;
+  function __construct($color="green") {
+    $this->color = $color;
+  }
+  function what_color() {
+    return $this->color;
+  }
+}
+?>
+```
+
+### NULL 值
+
+NULL 值表示变量没有值。NULL 是数据类型为 NULL 的值。
+
+NULL 值指明一个变量是否为空值。 同样可用于数据空值和NULL值的区别。
+
+可以通过设置变量值为 NULL 来清空变量数据：
+
+```php
+<?php
+  $x="Hello world!";
+  $x=null;
+  var_dump($x);
+?>
+```
+
+## 常量
+
+常量值被定义后，在脚本的其他任何地方都不能被改变。
+
+### PHP 常量
+
+常量是一个简单值的标识符。该值在脚本中不能改变。
+
+一个常量由英文字母、下划线、和数字组成,但数字不能作为首字母出现。 (常量名不需要加 $ 修饰符)。
+
+常量在整个脚本中都可以使用。
+
+### 设置 PHP 常量
+
+设置常量，使用 define() 函数
+
+`bool define ( string $name , mixed $value [, bool $case_insensitive = false ] )`
+
+该函数有三个参数:
+- **name**：必选参数，常量名称，即标志符。
+- **value**：必选参数，常量的值。
+- **case_insensitive**：可选参数，如果设置为 TRUE，该常量则大小写不敏感。默认是大小写敏感的。
+
+```php
+<?php
+  define('WELCOME', '欢迎来到我的博客');
+  echo WELCOME;
+?>
+```
+
+### 常量是全局的
+
+常量在定义后，默认是全局变量，可以在整个运行的脚本的任何地方使用。
+
+```php
+<?php
+  define('WELCOME', '欢迎来到我的博客');
+
+  function test() {
+    echo WELCOME;
+  }
+  test(); // 欢迎来到我的博客
+?>
+```

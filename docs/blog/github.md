@@ -4,6 +4,8 @@ Github Pages 不能运行动态程序，只能输出一些静态内容。因此 
 
 ## Github Pages
 
+<img :src="$withBase('/1567068170917.jpg')" alt="Github Pages"><br/>
+
 是GitHub为每一位Gitgay提供的静态页面服务，[GitHub Pages](https://pages.github.com/)官网
 
 - 每个账号有一个顶级的域名 `<username>.github.io`
