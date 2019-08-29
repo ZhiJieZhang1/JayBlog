@@ -24,6 +24,13 @@ module.exports = {
             "php-basis",
             "php-function"
           ]
+        },
+        {
+          title: '部署相关',
+          collapsable: false,
+          children: [
+            "github",
+          ]
         }
       ]
     },
