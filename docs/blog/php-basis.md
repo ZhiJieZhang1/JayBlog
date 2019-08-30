@@ -508,3 +508,137 @@ NULL 值指明一个变量是否为空值。 同样可用于数据空值和NULL�
   test(); // 欢迎来到我的博客
 ?>
 ```
+
+## 字符串
+
+双引号或单引号
+
+```php
+<?php
+  $str = "test string";
+  echo $str;
+?>
+```
+
+### 并置运算符 **`·`**
+
+拼接字符串
+
+```php
+<?php
+  $str1 = "Hello";
+  $str2 = "World!";
+  $str = $str1 . " " . $str2;
+  echo $str;
+?>
+```
+
+### strlen()
+
+返回字符串长度
+
+```php
+<?php
+  echo strlen("hello world!"); // 12
+?>
+```
+
+### strpos()
+
+用于在字符串内查找一个字符或一段指定的文本
+
+```php
+<?php
+echo strpos("Hello world!","world"); // 6
+?>
+```
+
+## 数组
+
+三种类型：
+
+- **数值数组** - 带有数字 ID 键的数组
+- **关联数组** - 带有指定的键的数组，每个键关联一个值
+- **多维数组** - 包含一个或多个数组的数组
+
+### 创建数组
+
+使用 array() 创建数组
+
+#### 数值数组
+
+自动分配 ID 键（ID 键总是从 0 开始）：
+
+```php
+<?php
+  $cars=array("Volvo","BMW","Toyota");
+?>
+```
+
+人工分配 ID 键：
+
+```php
+<?php
+  $cars[0]="Volvo";
+  $cars[1]="BMW";
+  $cars[2]="Toyota";
+?>
+```
+
+#### 关联数组
+
+```php
+<?php
+ $age=array("Peter"=>"35","Ben"=>"37","Joe"=>"43");
+?>
+```
+
+### 获取数组的长度 - count() 函数
+
+```php
+<?php
+ $cars=array("Volvo","BMW","Toyota");
+  echo count($cars); // 3
+?>
+```
+
+### 遍历数组
+
+#### 数值数组
+
+```php
+<?php
+  $cars=array("Volvo","BMW","Toyota");
+  $arrlength=count($cars);
+  
+  for($x=0;$x<$arrlength;$x++)
+  {
+      echo $cars[$x];
+      echo "<br>";
+  }
+?>
+```
+
+
+#### 关联数组
+
+```php
+<?php
+  $age=array("Peter"=>"35","Ben"=>"37","Joe"=>"43");
+  
+  foreach($age as $x=>$x_value)
+  {
+      echo "Key=" . $x . ", Value=" . $x_value;
+      echo "<br>";
+  }
+?>
+```
+
+## 数组排序
+
+- sort() - 对数组进行升序排列
+- rsort() - 对数组进行降序排列
+- asort() - 根据关联数组的值，对数组进行升序排列
+- ksort() - 根据关联数组的键，对数组进行升序排列
+- arsort() - 根据关联数组的值，对数组进行降序排列
+- krsort() - 根据关联数组的键，对数组进行降序排列
