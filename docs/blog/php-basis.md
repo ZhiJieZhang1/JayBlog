@@ -643,5 +643,3 @@ echo strpos("Hello world!","world"); // 6
 - arsort() - 根据关联数组的值，对数组进行降序排列
 - krsort() - 根据关联数组的键，对数组进行降序排列
 
-## Session
-
