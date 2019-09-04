@@ -32,6 +32,13 @@ module.exports = {
           children: [
             "github",
           ]
+        },
+        {
+          title: '其他',
+          collapsable: false,
+          children: [
+            "pwa",
+          ]
         }
       ]
     },
