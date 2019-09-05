@@ -14,6 +14,10 @@ module.exports = {
         text: "博客",
         link: "/blog/"
       },
+      {
+        text: "测试",
+        link: "/apple/"
+      },
     ],
     sidebar: {
       "/blog/": [
@@ -35,6 +39,15 @@ module.exports = {
         },
         {
           title: '其他',
+          collapsable: false,
+          children: [
+            "pwa",
+          ]
+        }
+      ],
+      '/apple/': [
+        {
+          title: '测试',
           collapsable: false,
           children: [
             "pwa",

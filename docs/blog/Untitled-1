@@ -1,0 +1,4 @@
+
+
+
+create table account ('userId' int primary key auto_increment,'userName' varchar(40));
