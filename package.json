@@ -22,7 +22,7 @@
   "homepage": "https://github.com/JanssenZhang/JayBlog#readme",
   "devDependencies": {
     "@vuepress/plugin-back-to-top": "^1.0.3",
-    "@vuepress/plugin-medium-zoom": "^1.0.3",
+    "@vuepress/plugin-medium-zoom": "^1.0.4",
     "vuepress": "^1.0.3"
   }
 }
