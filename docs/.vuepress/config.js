@@ -5,7 +5,18 @@ module.exports = {
     ['link', { rel: 'icon', href: '/logo.png' }],
   ],
   markdown: {
-    lineNumbers: true
+    lineNumbers: true,
+    extendMarkdown: md => {
+      md.use(require('markdown-it-task-checkbox'),{
+        disabled: true,
+        divWrap: false,
+        divClass: 'checkbox',
+        idPrefix: 'cbx_',
+        ulClass: 'task-list',
+        liClass: 'task-list-item'
+      });
+      md.use(require('markdown-it-emoji'));
+    }
   },
   themeConfig: {
     repo: "JanssenZhang/JayBlog",
@@ -50,6 +61,7 @@ module.exports = {
           title: '测试',
           collapsable: false,
           children: [
+            "js-api",
             "pwa",
           ]
         }
