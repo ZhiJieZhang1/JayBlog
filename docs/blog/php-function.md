@@ -140,3 +140,15 @@ foo(); // Before unset: 2, after unset: 23
 foo(); // Before unset: 3, after unset: 23
 ?>
 ```
+
+## die()
+
+die() 函数输出一条消息，并退出当前脚本。
+
+```php
+<?php
+  // message 必需
+  die(message);
+
+?>
+```

@@ -575,3 +575,142 @@ JOIN 在两个或多个表中查询数据。
 ```
 
 ## 脚本连接操作
+
+### 连接
+
+```php
+<?php
+$dbhost = 'localhost';  
+$dbuser = 'root';
+$dbpass = '';
+// 连接mysql
+$conn = mysqli_connect($dbhost, $dbuser, $dbpass);
+
+if(!$conn )
+{
+    die('连接失败: ' . mysqli_error($conn));
+} else {
+  echo 'success';
+}
+
+// 设置编码，防止中文乱码
+mysqli_set_charset($con,"utf8");
+
+// 选择指定的数据库
+mysqli_select_db( $conn, 'library');
+
+// 执行SQL语句
+$sql = 'select a.record_id, a.book_author, b.book_count from book_record a right join book_count b on a.book_author = b.book_author';
+$retval = mysqli_query( $conn, $sql );
+
+?>
+```
+
+### 实例:
+
+**一条新闻的 编辑，后端入库，展示页**
+
+#### 编辑页 news-edit.php
+
+```php
+<?php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>新闻管理系统</title>
+</head>
+<body>
+    <form action="mysql.php">
+        <p>
+            <label for="newstitle">新闻标题</label>
+            <input type="text" id="newstitle" name="newstitle">
+        </p>
+        <p>
+            <label for="newsimg">图片地址</label>
+            <input type="text" id="newsimg" name="newsimg">
+        </p>
+        <p>
+            <label for="newscontent">新闻内容</label>
+            <textarea  id="newscontent" name="newscontent" cols="30" rows="10"></textarea>
+        </p>
+        <p>
+            <label for="addtime">新闻时间</label>
+            <input type="date" id="addtime" name="addtime">
+        </p>
+        <p>
+            <input type="submit" value="提交">
+            <input type="reset" value="重置">
+        </p>
+    </form>
+</body>
+</html>
+?>
+```
+
+#### 后端入库逻辑 news-mysql.php
+
+```php
+<?php
+
+$dbhost = 'localhost';  
+$dbuser = 'root';
+$dbpass = '';
+
+$con = mysqli_connect($dbhost, $dbuser, $dbpass);
+
+header("Content-type: text/html; charset=utf-8");
+if (!$con) {
+    die('Could not connect: ' .mysqli_error($con));
+} else {
+    mysqli_select_db($con, 'news_data');
+    //从前端传来数据存储到数据库
+    $newstitle = $_REQUEST["newstitle"];
+    $newsimg = $_REQUEST["newsimg"];
+    $newscontent = $_REQUEST["newscontent"];
+    $addtime = $_REQUEST["addtime"];
+    $sql = "INSERT INTO `news`(`id`, `newstitle`, `newsimg`, `newscontent`, `addtime`) VALUES (null, '".$newstitle."','".$newsimg."','".$newscontent."','".$addtime."');";
+    mysqli_set_charset($con,"utf8");
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        die('Error:'.mysqli_error($con));
+    } else {
+        echo 'success';
+    }
+}
+mysqli_close($con);
+
+?>
+```
+
+#### 展示页 news.php
+
+```php
+<?php
+$dbhost = 'localhost';  
+$dbuser = 'root';
+$dbpass = '';
+
+$con = mysqli_connect($dbhost, $dbuser, $dbpass);
+header("Content-type: text/html; charset=utf-8");
+if (!$con) {
+    die('Could not connect: ' .mysqli_error($con));
+} else {
+    mysqli_select_db($con, 'news_data');
+    $sql = "SELECT * FROM `news`";
+    mysqli_set_charset($con,"utf8");
+    $result = mysqli_query($con, $sql);
+    $arr = array();
+    echo '<h1>新闻速报</h1>';
+    while ($row = mysqli_fetch_array($result)) {
+      echo"<h2>{$row['id']}.{$row['newstitle']} </h2>".
+          "<span>报道日期：{$row['addtime']} </span><br/>".
+          "<img src=' {$row['newsimg']} ' />".
+          "<p> {$row['newscontent']} </p>";
+    }
+}
+mysqli_close($con);
+?>
+```
