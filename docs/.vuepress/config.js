@@ -37,6 +37,7 @@ module.exports = {
           collapsable: false,
           children: [
             "php-basis",
+            "php-oop",
             "php-function",
             "php-mysql",
           ]
