@@ -9,13 +9,13 @@ PHP（外文名：PHP：Hypertext Preprocessor，中文名：“超文本预处�
 - 脚本文件以 **.php** 为后缀，需要php脚本处理环境来运行（如：Apache）
 - 代码块必须包含在 **<?php ... ?>** 中
 
-```php{1,6}
+```php {1,6}
   <?php
 
     $a = 1;
     echo $a;
 
-  ?>
+  ?>  // 这个可以省略
 ```
 
 ::: warning

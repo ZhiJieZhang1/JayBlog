@@ -1,6 +1,6 @@
 ---
 lang: zh-CN
-sidebarDepth: 1
+sidebarDepth: 2
 ---
 
 # 面向对象
@@ -128,5 +128,382 @@ class Site {
 $baidu = new Site;
 $taobao = new Site;
 $google = new Site;
+?>
+```
+
+#### 调用成员方法
+
+```php
+<?php
+// 调用成员函数，设置title和URL
+$baidu->setTitle("百度");
+$taobao->setTitle("淘宝");
+$google->setTitle("谷歌");
+
+$baidu->setUrl("www.baidu.com");
+$taobao->setUrl("www.taobao.com");
+$google->setUrl("www.google.com");
+
+// 调用成员函数，获取title和URL
+$baidu->getTitle();
+$taobao->getTitle();
+$google->getTitle();
+
+$baidu->getUrl();
+$taobao->getUrl();
+$google->getUrl();
+
+// 百度
+// 淘宝
+// 谷歌
+// www.baidu.com
+// www.taobao.com
+// www.google.com
+?>
+```
+
+### 构造函数
+
+构造函数是一种特殊的方法。主要用来在创建对象时初始化对象， 即为对象成员变量赋初始值，在创建对象的语句中与 new 运算符一起使用。
+
+语法
+
+```php
+<?php
+
+void __construct ([ mixed $args [, $... ]] )
+
+?>
+```
+
+例如上面的例子，就不用单独调用set了
+
+```php
+<?php
+class Site {
+  var $url;
+  var $title;
+
+  function __construct($par1, $par2) {
+    $this->url = $par1;
+    $this->title = $par2;
+  }
+  function getUrl() {
+    echo $this->url . PHP_EOL;
+  }
+  function getTitle() {
+    echo $this->title . PHP_EOL;
+  }
+}
+?>
+```
+
+### 析构函数
+
+析构函数(destructor) 与构造函数相反，当对象结束其生命周期时（例如对象所在的函数已调用完毕），系统自动执行析构函数。
+
+```php
+<?php
+  class myDestructableClass {
+    function __construct() {
+      print "构造函数 \n";
+      $this->name = "myDestructableClass";
+    }
+    function __destruct() {
+      print "销毁" . $this->name . "\n";
+    }
+  }
+
+  $obj = new myDestructableClass();
+
+  // 执行结果：
+  // 构造函数
+  // 销毁 MyDestructableClass
+?>
+```
+
+### 继承
+
+PHP 使用关键字 extends 来继承一个类，PHP 不支持多继承，格式如下：
+
+```php
+<?php
+
+  class Child extends Parent {
+    ...
+  }
+
+?>
+```
+
+创建新类 Child_site 并继承 Site 类
+
+```php
+<?php
+
+  class Child_site extends Site {
+    var $category;
+    function setCate($par) {
+      $this->category = $par;
+    }
+    function getCate() {
+      echo $this->category . PHP_EOL;
+    }
+  }
+
+?>
+```
+
+### 方法重写
+
+如果从父类继承的方法不能满足子类的需求，可以对其进行改写，这个过程叫方法的覆盖（override），也称为方法的重写。
+
+重写上面的getUrl和getTitle
+
+```php
+<?php
+  function getUrl() {
+    echo $this->url . PHP_EOL;
+    return $this->url;
+  }
+  function getTitle() {
+    echo $this->title . PHP_EOL;
+    return $this->title;
+  }
+?>
+```
+
+### 访问控制
+
+PHP 对属性或方法的访问控制，是通过在前面添加关键字 public（公有），protected（受保护）或 private（私有）来实现的。
+
+- **public（公有）**：公有的类成员可以在任何地方被访问。
+- **protected（受保护）**：受保护的类成员则可以被其自身以及其子类和父类访问。
+- **private（私有）**：私有的类成员则只能被其定义所在的类访问。
+
+#### 属性的访问控制
+
+类属性必须定义为公有，受保护，私有之一。如果用 var 定义，则被视为公有。
+
+```php
+<?php
+/**
+ * Define MyClass
+ */
+class MyClass {
+
+  public $public = "public";
+  protected $protected = "protected";
+  private $private = "private";
+
+  function  printHello() {
+    echo $this->public;
+    echo $this->protected;
+    echo $this->private;
+  }
+}
+
+$obj = new MyClass();
+echo $obj->public; // public
+echo $obj->protected; // 报错
+echo $obj->private; // 报错
+$obj->printHello(); // public peotected private
+
+/**
+ * Define MyClass2
+ */
+class MyClass2 extends MyClass
+{
+    // 可以对 public 和 protected 进行重定义，但 private 而不能
+    protected $protected = 'Protected2';
+
+    function printHello()
+    {
+        echo $this->public;
+        echo $this->protected;
+        echo $this->private;
+    }
+}
+
+$obj2 = new MyClass2();
+echo $obj2->public; // 这行能被正常执行
+echo $obj2->private; // 未定义 private
+echo $obj2->protected; // 这行会产生一个致命错误
+$obj2->printHello(); // 输出 public、protected2 和 Undefined
+
+?>
+```
+
+#### 方法的访问控制
+
+类中的方法可以被定义为公有，私有或受保护。如果没有设置这些关键字，则该方法默认为公有。
+
+```php
+<?php
+  /**
+   * Define MyClass
+   */
+  class MyClass
+  {
+      // 声明一个公有的构造函数
+      public function __construct() { }
+
+      // 声明一个公有的方法
+      public function MyPublic() { }
+
+      // 声明一个受保护的方法
+      protected function MyProtected() { }
+
+      // 声明一个私有的方法
+      private function MyPrivate() { }
+
+      // 此方法为公有
+      function Foo()
+      {
+          $this->MyPublic();
+          $this->MyProtected();
+          $this->MyPrivate();
+      }
+  }
+
+  $myclass = new MyClass;
+  $myclass->MyPublic(); // 这行能被正常执行
+  $myclass->MyProtected(); // 这行会产生一个致命错误
+  $myclass->MyPrivate(); // 这行会产生一个致命错误
+  $myclass->Foo(); // 公有，受保护，私有都可以执行
+
+  /**
+   * Define MyClass2
+   */
+  class MyClass2 extends MyClass
+  {
+      // 此方法为公有
+      function Foo2()
+      {
+          $this->MyPublic();
+          $this->MyProtected();
+          $this->MyPrivate(); // 这行会产生一个致命错误
+      }
+  }
+
+  $myclass2 = new MyClass2;
+  $myclass2->MyPublic(); // 这行能被正常执行
+  $myclass2->Foo2(); // 公有的和受保护的都可执行，但私有的不行
+?>
+```
+
+这有一个醒目的例子
+
+```php
+<?php
+class Bar
+{
+  public function test()
+  {
+    $this->testPrivate();
+    $this->testPublic();
+  }
+
+  public function testPublic()
+  {
+    echo "Bar::testPublic\n";
+  }
+
+  private function testPrivate()
+  {
+    echo "Bar::testPrivate\n";
+  }
+}
+
+class Foo extends Bar
+{
+  public function testPublic()
+  {
+    echo "Foo::testPublic\n";
+  }
+
+  private function testPrivate()
+  {
+    echo "Foo::testPrivate\n";
+  }
+}
+
+$myfoo = new Foo();
+$myfoo->test();
+// Bar::testPrivate
+// Foo::testPublic
+?>
+```
+
+### 接口
+
+使用接口（interface），可以指定某个类必须实现哪些方法，但不需要定义这些方法的具体内容。  
+
+接口是通过 interface 关键字来定义的，就像定义一个标准的类一样，但其中定义所有的方法都是空的。
+
+接口中定义的所有方法都必须是公有，这是接口的特性。
+
+要实现一个接口，使用 implements 操作符。类中必须实现接口中定义的所有方法，否则会报一个致命错误。类可以实现多个接口，用逗号来分隔多个接口的名称。
+
+```php
+<?php
+// 声明一个'iTemplate'接口
+interface iTemplate
+{
+    public function setVariable($name, $var);
+    public function getHtml($template);
+}
+
+
+// 实现接口
+class Template implements iTemplate
+{
+    private $vars = array();
+  
+    public function setVariable($name, $var)
+    {
+        $this->vars[$name] = $var;
+    }
+  
+    public function getHtml($template)
+    {
+        foreach($this->vars as $name => $value) {
+            $template = str_replace('{' . $name . '}', $value, $template);
+        }
+
+        return $template;
+    }
+}
+?>
+```
+
+### 常量
+
+可以把在类中始终保持不变的值定义为常量。在定义和使用常量的时候不需要使用 $ 符号。
+
+常量的值必须是一个定值，不能是变量，类属性，数学运算的结果或函数调用。
+
+自 PHP 5.3.0 起，可以用一个变量来动态调用类。但该变量的值不能为关键字（如 self，parent 或 static）。
+
+```php
+<?php
+class MyClass
+{
+    const constant = '常量值';
+
+    function showConstant() {
+        echo  self::constant . PHP_EOL;
+    }
+}
+
+echo MyClass::constant . PHP_EOL;
+
+$classname = "MyClass";
+echo $classname::constant . PHP_EOL; // 自 5.3.0 起
+
+$class = new MyClass();
+$class->showConstant();
+
+echo $class::constant . PHP_EOL; // 自 PHP 5.3.0 起
 ?>
 ```
