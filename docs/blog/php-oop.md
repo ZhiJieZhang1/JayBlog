@@ -1,6 +1,7 @@
 ---
 lang: zh-CN
-sidebarDepth: 2
+sidebarDepth: 3
+collapsable: false
 ---
 
 # 面向对象
@@ -505,5 +506,373 @@ $class = new MyClass();
 $class->showConstant();
 
 echo $class::constant . PHP_EOL; // 自 PHP 5.3.0 起
+?>
+```
+
+### 抽象类
+
+任何一个类，如果它里面至少有一个方法是被声明为抽象的，那么这个类就必须被声明为抽象的。
+
+::: danger
+比如，这样是错误的：
+
+```php
+<?php
+class AbstractClass
+{
+    // 强制要求子类定义这些方法
+    abstract protected function getValue();
+}
+?>
+```
+
+:::
+
+定义为抽象的类不能被实例化。
+
+被定义为抽象的方法只是声明了其调用方式（参数），不能定义其具体的功能实现。
+
+继承一个抽象类的时候，子类必须定义父类中的所有抽象方法；另外，这些方法的访问控制必须和父类中一样（或者更为宽松）。例如某个抽象方法被声明为受保护的，那么子类中实现的方法就应该声明为受保护的或者公有的，而不能定义为私有的。
+
+#### 关于抽象类有博客这么幽默解释
+
+此处转载自 [https://blog.csdn.net/kaituozheboke/article/details/52183726](https://blog.csdn.net/kaituozheboke/article/details/52183726)
+
+
+***
+**背景：**
+
+春秋战国时期,燕零七 飞行器专家,能工巧匠.他写了一份图纸---【飞行器制造术】
+
+**飞行器秘制图谱：**
+
+- 要有一个有力的发动机,喷气式.
+- 要有一个平衡舵,掌握平衡
+
+他的孙子问: 发动机怎么造呢?
+
+燕零七眼望夕阳: 我是造不出来,但我相信后代有人造出来
+
+***
+
+```php
+<?php
+
+// 燕零七的构想,当时的科技造不出来,即这个类只能在图纸化,无法实例化.
+// 此时这个类没有具体的方法去实现,还太抽象.
+// 因此我们把他做成一个抽象类
+abstract class FlyIdea {
+    // 大力引擎,当时也没法做,这个方法也实现不了
+    // 因此方法也是抽象的
+    public abstract function engine();
+
+    // 平衡舵
+    public abstract function blance();
+
+    /*
+----------------------注意:抽象方法 不能有方法体,写到小括号就行了----------------------
+        下面这样写是错误的（有方法体）
+        public abstract function blance() {
+        }
+        Fatal error: Abstract function FlyIdea::engine() cannot contain body
+    */
+}
+
+/*
+----------------------抽象类不能 new 来实例化----------------------
+下面这行是错误的
+$kongke = new FlyIdea();
+Cannot instantiate abstract class FlyIdea
+*/
+
+
+
+// ------------1----------到了明朝,万户用火箭解决了发动机的问题----------------------
+abstract class Rocket extends FlyIdea {
+
+    // 万户把engine方法,给实现了,不再抽象了
+    public function engine() {
+        echo '点燃火药,失去平衡,嘭!<br />';
+    }
+
+    // 继承自父类，但是万户实现不了平衡舵,（还有一个抽象方法）
+    // 因此平衡舵对于Rocket类来说,
+    // 还是抽象的,
+    // 类也是抽象的 因此类加一个abstract
+}
+
+
+/*
+------------1----------到了现代,燕十八亲自制作飞行器----------------------
+这个Fly类中,所以抽象方法,都已经实现了,不再是梦想.
+*/
+
+class Fly extends Rocket{
+    public function engine() {
+        echo '有力一扔<br />';
+    }
+
+    public function blance() {
+        echo '两个纸翼保持平衡~~~';
+    }
+
+    public function start() {
+        $this->engine();
+        for($i=0;$i<10;$i++) {
+            $this->blance();
+            echo '平稳飞行<br />';
+        }
+    }
+}
+
+$apache = new Fly();
+
+$apache->start();
+/*有力一扔
+两个纸翼保持平衡~~~平稳飞行
+两个纸翼保持平衡~~~平稳飞行
+两个纸翼保持平衡~~~平稳飞行
+两个纸翼保持平衡~~~平稳飞行
+两个纸翼保持平衡~~~平稳飞行
+两个纸翼保持平衡~~~平稳飞行
+两个纸翼保持平衡~~~平稳飞行
+两个纸翼保持平衡~~~平稳飞行
+两个纸翼保持平衡~~~平稳飞行
+两个纸翼保持平衡~~~平稳飞行*/
+
+//有一个类是抽象的，但是里面的方法不是抽象的，能否new？
+/*
+但是 --- 即便全是具体方法,但类是抽象的,
+也不能实例化.*/
+abstract class Car {
+    public function run() {
+        echo '滴滴';
+    }
+}
+
+//$qq = new qq();   不能实例化
+//解决办法》》》继承
+class qq extends Car {
+}
+
+$qq = new qq();
+?>
+```
+
+:::tip
+
+**总结：**
+
+- 类前加 abstract 是抽象类
+
+- 方法前加 abstract 是抽象方法
+
+- 抽象类 不能 实例化
+
+- 抽象方法 不能有 方法体
+
+- 有抽象方法,则此类必是 抽象类
+
+- 抽象类,内未必有抽象方法
+
+- 但是 --- 即便全是具体方法,但类是抽象的,也不能实例化.
+:::
+
+#### 抽象类的意义
+
+**请看如下场景:**
+
+Facebook 多国语言欢迎页面
+
+user登陆,有一个 c 字段,是其国家
+
+当各国人登陆时,看到各国语言的欢迎界面
+
+我们可以用**面向过程**的来做
+
+```php
+<?php
+
+$c = 'english';
+
+if($c == 'china') {
+    echo '你好,非死不可';
+} else if($c =='english') {
+    echo 'hi,welcome';
+} else if($c == 'japan') {
+    echo '搜达斯内';
+}
+?>
+```
+
+反思: 当facebook进入泰国市场时,
+
+增加 else if ,扩展性很差
+
+=====用面向对象来做======
+
+让美国小组/中国开发组/斯蜜达开发组 来开发Welcome类
+
+争执不下: echo 到底该中? 日? 韩?
+
+说: 干脆在wel()方法里,判断一下? 没意义啊
+
+```php
+<?php
+abstract class Welcome {
+    public abstract function wel();
+}
+
+
+
+// 这是首页的controller开发者
+//$wel = new Welcome();
+//$wel->wel();
+/*
+说:你们别争执了,我只知道,我要调用wel()方法,就是打招呼,
+你们显示什么语言和我无关.
+*/
+
+
+/**
+ *经理说话:
+ *Welcome谁也不许动,各国开发小组开发自己的招呼类
+ *
+ *另:为了首页的controller开发者便于调用,
+ *统一继承自welcome类
+**/
+
+
+class china extends Welcome {
+    public function wel() {
+        echo '你好,非死不可,<br />';
+    }
+}
+
+
+class english extends Welcome {
+    public function wel() {
+        echo 'hi,welcome';
+    }
+}
+
+
+class japan extends Welcome {
+    public function wel() {
+        echo '搜达斯奈';
+    }
+}
+
+
+
+// 再看首页开发者
+
+$c = 'english'; // china, japan
+$wel = new $c();
+$wel->wel();
+
+
+/*
+
+以后新增了泰国语,首页的开发者,根本无需改动
+只需要增加一个泰国的welcome类 就可以了.
+
+所以有一些面向对象的介绍中,说面向对象的一个特点:可插拔特性
+
+*/
+?>
+```
+
+### Static 关键字
+
+类的属性或方法声明为static的话，就可以不通过类的实例，直接通过类来调用；
+
+静态属性不能通过一个类已实例化的对象来访问（但静态方法可以）。
+
+由于静态方法不需要通过对象即可调用，所以伪变量 $this 在静态方法中不可用。
+
+静态属性不可以由对象通过 -> 操作符来访问。
+
+自 PHP 5.3.0 起，可以用一个变量来动态调用类。但该变量的值不能为关键字 self，parent 或 static。
+
+```php
+<?php
+class Foo
+{
+  public static $my_static = "foo";
+  public function staticValue()
+  {
+    return self::$my_static;
+  }
+}
+
+print Foo::$my_static . PHP_EOL;
+
+$foo = new Foo();
+
+print $foo->staticValue() . PHP_EOL;
+?>
+```
+
+### Final 关键字
+
+PHP 5 新增了一个 final 关键字。如果父类中的方法被声明为 final，则子类无法覆盖该方法。如果一个类被声明为 final，则不能被继承。
+
+以下代码执行会报错：
+
+```php
+<?php
+class BaseClass {
+   public function test() {
+       echo "BaseClass::test() called" . PHP_EOL;
+   }
+
+   final public function moreTesting() {
+       echo "BaseClass::moreTesting() called"  . PHP_EOL;
+   }
+}
+
+class ChildClass extends BaseClass {
+   public function moreTesting() {
+       echo "ChildClass::moreTesting() called"  . PHP_EOL;
+   }
+}
+// 报错信息 Fatal error: Cannot override final method BaseClass::moreTesting()
+?>
+```
+
+### 调用父类构造方法
+
+PHP 不会在子类的构造方法中自动的调用父类的构造方法。要执行父类的构造方法，需要在子类的构造方法中调用 parent::__construct() 。
+
+```php
+<?php
+class BaseClass
+{
+  function __construct()
+  {
+    print "BaseClass中的构造函数" . PHP_EOL;
+  }
+}
+
+class SubClass extends BaseClass
+{
+  function __construct()
+  {
+    parent::__construct();
+    print "SubClass中的构造函数" . PHP_EOL;
+  }
+}
+
+class OtherClass extends BaseClass
+{
+  // 继承 BaseClass 的构造方法
+}
+
+$obj = new BaseClass(); // BaseClass中的构造函数
+
+$obj = new SubClass(); // BaseClass中的构造函数  SubClass中的构造函数
+
+$obj = new OtherClass(); // BaseClass中的构造函数
 ?>
 ```

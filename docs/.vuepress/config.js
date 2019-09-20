@@ -33,7 +33,7 @@ module.exports = {
     sidebar: {
       "/blog/": [
         {
-          title: 'PHP基础',
+          title: 'PHP',
           collapsable: false,
           children: [
             "php-basis",
@@ -47,6 +47,13 @@ module.exports = {
           collapsable: false,
           children: [
             "github",
+          ]
+        },
+        {
+          title: 'Python',
+          collapsable: false,
+          children: [
+            "python-basic",
           ]
         },
         {
