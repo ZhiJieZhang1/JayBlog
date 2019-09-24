@@ -11,43 +11,61 @@ sidebarDepth: 2
 
 登录mysql
 
+```bash
     mysql -u root -p 密码
-  
+```
+
 查看所有数据库
 
+```bash
     show databases;
+```
 
 创建数据库
 
+```bash
     create database if not exists test(数据库名) default charset utf8(编码) collate utf8_general_ci(排序);
+```
 
 查看所有数据库
 
+```bash
     alter database test default character utf8 default collate utf8_general_ci;
+```
 
 打开数据库
 
+```bash
     use test;
+```
 
 查看当前所在数据库
 
+```bash
     select database();
+```
 
 ### 表相关
 
 创建数据表
 
+```bash
     CREATE TABLE table_name (column_name column_type);
     create table `account` (`userId` int primary key not null, `userName` varchar(100) not null);
     create table accountT (`userId` int not null primary key, `userName` varchar(100) not null);
+```
 
 查看所有表
 
+```bash
     show tables;
+```
 
 删除数据表
 
+```bash
     drop table 表名;
+```
 
 查看表结构
 
