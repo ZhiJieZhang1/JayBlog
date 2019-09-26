@@ -1,7 +1,6 @@
 ---
 lang: zh-CN
 sidebarDepth: 3
-collapsable: false
 ---
 
 # 面向对象
