@@ -202,7 +202,9 @@ sidebarDepth: 2
 
 基本语法
 
+```bash
     DELETE FROM table_name [WHERE Clause]
+```
 
 ::: danger
   如果没有指定 WHERE 子句，MySQL 表中的所有记录将被删除。
