@@ -214,8 +214,10 @@ sidebarDepth: 2
 
 基本语法
 
+```bash
     UPDATE table_name SET field1=new-value1, field2=new-value2
     [WHERE Clause]
+```
 
 #### 查找
 
