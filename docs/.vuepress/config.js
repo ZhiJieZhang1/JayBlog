@@ -70,6 +70,7 @@ module.exports = {
           collapsable: false,
           children: [
             "js-api",
+            "linkOut",
             "pwa",
           ]
         }
