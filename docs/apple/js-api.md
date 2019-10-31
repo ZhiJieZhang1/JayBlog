@@ -1,5 +1,13 @@
-# 那些不怎么被用到的JS API
+# 零星点点
 
-## IntersectionObserver
+## 那些不怎么被用到的JS API
 
-## requestIdleCallback
+### IntersectionObserver
+
+### requestIdleCallback
+
+## git hook扩展
+
+- [hushy](https://github.com/typicode/husky)
+
+- [pre-commit](https://github.com/observing/pre-commit)
