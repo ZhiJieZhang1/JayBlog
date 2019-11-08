@@ -11,3 +11,5 @@
 - [hushy](https://github.com/typicode/husky)
 
 - [pre-commit](https://github.com/observing/pre-commit)
+
+<blingText/>
