@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/JanssenZhang/JayBlog#readme",
   "devDependencies": {
-    "@vuepress/plugin-back-to-top": "^1.0.3",
+    "@vuepress/plugin-back-to-top": "^1.3.1",
     "@vuepress/plugin-medium-zoom": "^1.0.3",
     "markdown-it-emoji": "^1.4.0",
     "markdown-it-task-checkbox": "^1.0.6",
