@@ -6,4 +6,4 @@
 
 记录学习笔记。
 
-访问地址：[JanssenZhang.github.io](https://zhijiezhang1.github.io/)
+访问地址：[zhijiezhang1.github.io](https://zhijiezhang1.github.io/)
